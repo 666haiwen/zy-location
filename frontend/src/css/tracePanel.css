@@ -1,0 +1,116 @@
+.all-panel {
+    position: absolute;
+    top: 0px;
+    width: var(--main-view-width);
+    height: 35px;
+    left: 1px;
+    border: 2px;
+    border-width: thin;
+    border-style: outset;
+    border-radius: 3px;
+    border-color: var(--main-border-color);
+}
+
+.title-prefix {
+    position: absolute;
+    top: 0px;
+    width: 7px;
+    height: var(--main-view-top-title);
+    left: 0px;
+    padding: 1px 0px;
+    background: #4151f5;
+    border-width: thin;
+    border-radius: 4px;
+}
+
+.title-p {
+    top: 0px;
+    margin: 0px;
+    background: #4151F520;
+    padding-left: 20px;
+    height: var(--main-view-top-title);
+    line-height: var(--main-view-top-title);
+    font-size: var(--main-title-font-size);
+    font-weight: bold;
+    color: var(--main-title-font-color);
+    text-align: left;
+    border: 2px;
+    border-width: thin;
+    border-style: outset;
+    border-radius: 4px;
+    border-color: var(--main-border-color);
+    cursor: pointer;
+}
+
+.trace-panel {
+    position: absolute;
+    top: 42px;
+    width: var(--main-view-width);
+    height: 1000px;
+    left: 1px;
+    border: 2px;
+    border-width: thin;
+    border-style: outset;
+    border-radius: 3px;
+    border-color: var(--main-border-color);
+}
+
+.orignal-panel {
+    position: absolute;
+    top: 0px;
+    width: 958px;
+    height: 500px;
+    left: 0px;
+    border: 2px;
+    border-width: thin;
+    border-style: outset;
+    border-radius: 3px;
+    border-color: var(--main-border-color);
+}
+
+.cluster-panel {
+    position: absolute;
+    top: 0px;
+    width: 958px;
+    height: 500px;
+    left: 960px;
+    border: 2px;
+    border-width: thin;
+    border-style: outset;
+    border-radius: 3px;
+    border-color: var(--main-border-color);
+}
+
+.kalman-panel {
+    position: absolute;
+    top: 501px;
+    width: 958px;
+    height: 500px;
+    left: 0px;
+    border: 2px;
+    border-width: thin;
+    border-style: outset;
+    border-radius: 3px;
+    border-color: var(--main-border-color);
+}
+
+.basis-panel {
+    position: absolute;
+    top: 501px;
+    width: 958px;
+    height: 500px;
+    left: 960px;
+    border: 2px;
+    border-width: thin;
+    border-style: outset;
+    border-radius: 3px;
+    border-color: var(--main-border-color);
+}
+
+.trace-svg {
+    position: absolute;
+    top: 35px;
+    left: 7px;
+    width: 950px;
+    height: 465px;
+}

@@ -1,0 +1,11 @@
+.vscode
+node_modules
+
+#frontend
+frontend/dist
+
+#backend
+__pycache__
+backend/migrations
+db.sqlite3
+*.pyc
