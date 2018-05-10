@@ -1,8 +1,8 @@
 import os
 import json
-import pylab as plt
 
-def cluster(x, y, module_dir):
+
+def cluster(x, y):
     Threshold = 0.08**2
     N = len(x)
     afterX = []
@@ -31,16 +31,10 @@ def cluster(x, y, module_dir):
         x = tmpX
         y = tmpY
         N = len(x)
-    # with open(module_dir + 'trace.json', 'w') as fp:
-    #         json.dump(res, fp)
-    # plt.plot(afterX, afterY)
-    # plt.show()
     res = {'pos': []}
     for i in range(len(afterX)):
         res['pos'].append({
             'x':afterX[i],
             'y':afterY[i]
         })
-    # with open(module_dir + 'cluster.json', 'w') as fp:
-    #         json.dump(res, fp)
     return afterX, afterY, res

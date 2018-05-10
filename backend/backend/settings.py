@@ -137,6 +137,7 @@ TRACE_DATA = {
 }
 # time interval for get data
 TIME_INTERVAL = 0.05
+SAMPLE_ID = '1'
 START = 0
 THREAD_LOCK = threading.Lock()
 THREADS = [threading.Thread(target=simulation)]

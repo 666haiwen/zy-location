@@ -60,3 +60,14 @@ def _start_simulate(request):
     settings.START = 1
     settings.THREAD_LOCK.release()
     return JsonResponse({'data': 'ok'})
+
+
+def set_sample(request):
+    return validate_get_request(request, _set_sample, ['sample'])
+
+def _set_sample(request):
+    settings.THREAD_LOCK.acquire()
+    settings.START = 1
+    settings.SAMPLE_ID = request.GET['sample']
+    settings.THREAD_LOCK.release()
+    return JsonResponse({'data': 'ok'})

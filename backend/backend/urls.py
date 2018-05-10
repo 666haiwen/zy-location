@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
     path('trace', api.get_trace),
-    path('start_simulate', api.start_simulate)
+    path('start_simulate', api.start_simulate),
+    path('sample', api.set_sample)
 ]

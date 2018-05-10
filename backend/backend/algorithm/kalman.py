@@ -61,7 +61,7 @@ def kalman(x, P, measurement, R, motion, Q, F, H):
 
     return x, P
 
-def demo_kalman_xy(_x, _y, module_dir):
+def demo_kalman_xy(_x, _y):
     x = np.matrix('0. 0. 0. 0.').T 
     P = np.matrix(np.eye(4))*1000 # initial uncertainty
     observed_x = _x
@@ -85,7 +85,3 @@ def demo_kalman_xy(_x, _y, module_dir):
         res_x.append(kalman_x[i][0])
         res_y.append(kalman_y[i][0])
     return res_x, res_y, res
-    # with open(module_dir + 'kaerman.json', 'w') as fp:
-    #         json.dump(res, fp)
-    # plt.plot(kalman_x, kalman_y, 'g-')
-    # plt.show()

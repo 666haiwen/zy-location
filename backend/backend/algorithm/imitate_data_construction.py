@@ -6,22 +6,8 @@ from .kalman import demo_kalman_xy
 from .. import settings
 
 def simulation():
-    module_dir = os.path.dirname(__file__) + '/../'
     path = os.path.dirname(__file__) + '/'
     data = []
-    with open(path + 'trace.txt', encoding='utf-8') as fp:
-        for line in fp:
-            if not line[0] == ' ':
-                continue
-            index = line[4:8]
-            line = line[9:-2]
-            location = line.split(',')
-            pos = {
-                'x': float(location[0]),
-                'y': float(location[1]),
-                'z': float(location[2])
-            }
-            data.append(pos)
     while True:
         while settings.START == 0:
             pass
@@ -31,6 +17,8 @@ def simulation():
             'cluster': {},
             'kalman': {}
         }
+        with open(path + 'trace_0' + settings.SAMPLE_ID + '.json', encoding='utf-8') as fp:
+            data = json.load(fp)
         settings.THREAD_LOCK.release()
         res = []
         labels = []
@@ -47,9 +35,9 @@ def simulation():
             # simulate accept a new data every interval
             time.sleep(settings.TIME_INTERVAL)
             # cluster
-            cluster_x, cluster_y, _cluster = cluster(x, y, module_dir)
+            cluster_x, cluster_y, _cluster = cluster(x, y)
             # kaerman filter
-            kalman_x, kalman_y, _kalman = demo_kalman_xy(cluster_x, cluster_y, module_dir)
+            kalman_x, kalman_y, _kalman = demo_kalman_xy(cluster_x, cluster_y)
             settings.THREAD_LOCK.acquire()
             settings.TRACE_DATA = {
                 'orignal': orignal,

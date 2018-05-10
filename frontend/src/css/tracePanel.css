@@ -44,9 +44,9 @@
 
 .trace-panel {
     position: absolute;
-    top: 42px;
+    top: 43px;
     width: var(--main-view-width);
-    height: 1000px;
+    height: 1002px;
     left: 1px;
     border: 2px;
     border-width: thin;
@@ -58,9 +58,9 @@
 .orignal-panel {
     position: absolute;
     top: 0px;
-    width: 958px;
+    width: 940px;
     height: 500px;
-    left: 0px;
+    left: 7px;
     border: 2px;
     border-width: thin;
     border-style: outset;
@@ -71,9 +71,9 @@
 .cluster-panel {
     position: absolute;
     top: 0px;
-    width: 958px;
+    width: 940px;
     height: 500px;
-    left: 960px;
+    left: 954px;
     border: 2px;
     border-width: thin;
     border-style: outset;
@@ -84,9 +84,9 @@
 .kalman-panel {
     position: absolute;
     top: 501px;
-    width: 958px;
+    width: 940px;
     height: 500px;
-    left: 0px;
+    left: 7px;
     border: 2px;
     border-width: thin;
     border-style: outset;
@@ -97,9 +97,9 @@
 .basis-panel {
     position: absolute;
     top: 501px;
-    width: 958px;
+    width: 940px;
     height: 500px;
-    left: 960px;
+    left: 954px;
     border: 2px;
     border-width: thin;
     border-style: outset;
@@ -110,7 +110,7 @@
 .trace-svg {
     position: absolute;
     top: 35px;
-    left: 7px;
-    width: 950px;
+    left: 0px;
+    width: 940px;
     height: 465px;
 }

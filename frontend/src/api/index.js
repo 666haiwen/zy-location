@@ -15,8 +15,17 @@ export const getTraceData = () => {
   });
 };
 
-export const startSimulate = () => {
+// export const startSimulate = () => {
+//   getJson({
+//     url: HOSTNAME + 'start_simulate'
+//   });
+// };
+
+export const setSample = (sample) => {
   getJson({
-    url: HOSTNAME + 'start_simulate'
+    url: HOSTNAME + 'sample',
+    data: {
+      'sample': sample
+    }
   });
 };
