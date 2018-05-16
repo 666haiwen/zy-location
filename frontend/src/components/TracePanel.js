@@ -64,11 +64,12 @@ class TracePanel extends React.Component {
     oldCircle.remove();
     if (this.state.data == null || this.state.data.kalman.pos == undefined )
       return;
-    const width = 900;
+    const width = 500;
     const height = 500;
-    const x = d3.scaleLinear()
+    const _x = d3.scaleLinear()
         .domain([-6, 5])
         .range([0, width]);
+    const x = d => _x(d) + 200;
     const y = d3.scaleLinear()
         .domain([-6, 5])
         .range([height, 0]);
