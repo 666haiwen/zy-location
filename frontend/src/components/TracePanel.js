@@ -56,23 +56,70 @@ class TracePanel extends React.Component {
     });
   }
 
+  drawAxis(svgName) {
+    const svgContainer = d3.selectAll(svgName);
+    svgContainer.selectAll('g').remove();
+    svgContainer.selectAll('line').remove();
+    const width = 500;
+    const height = 500;
+    const x = d3.scaleLinear()
+        .domain([-5, 5])
+        .range([0, width]);
+    const y = d3.scaleLinear()
+        .domain([-5, 5])
+        .range([height, 0]);
+    var xAxis = d3.axisBottom(x)
+        .ticks(11 * 2);
+    var yAxis = d3.axisLeft(y)
+        .ticks(11 * 2);
+    d3.select(svgName)
+      .append('g')
+        .attr('class', 'axis-x')
+        .attr('transform', 'translate(200,' + (30 + height / 2) + ')')
+        .call(xAxis);
+    d3.select(svgName)
+      .append('g')
+        .attr('class', 'axis-y')
+        .attr('transform', 'translate(' + (200 + width / 2) +',30)')
+        .call(yAxis);
+    for (let i = -5;  i <= 5.1; i+=0.2) {
+      if (i == 0) 
+        continue;
+      d3.select(svgName)
+        .append('line')
+          .attr('x1', 200)  
+          .attr('x2', 200 + width)  
+          .attr('y1', y(i) + 30)
+          .attr('y2', y(i) + 30)
+          .attr('stroke','#777')
+          .attr('stroke-dasharray', 1)
+          .attr('stroke-width',1);
+      d3.select(svgName)
+        .append('line')
+          .attr('x1', 200 + x(i))
+          .attr('x2', 200 + x(i))  
+          .attr('y1', 30)
+          .attr('y2', 30 + height)
+          .attr('stroke-dasharray', 1)
+          .attr('stroke','#777')
+          .attr('stroke-width',1);
+    }
+  }
+
   drawLines() {
     const svgContainer = d3.selectAll('.trace-svg');
     const oldPath = svgContainer.selectAll('path');
     const oldCircle = svgContainer.selectAll('circle');
-    oldPath.remove();
-    oldCircle.remove();
-    if (this.state.data == null || this.state.data.kalman.pos == undefined )
-      return;
     const width = 500;
     const height = 500;
     const _x = d3.scaleLinear()
-        .domain([-6, 5])
+        .domain([-5, 5])
         .range([0, width]);
     const x = d => _x(d) + 200;
-    const y = d3.scaleLinear()
-        .domain([-6, 5])
+    const _y = d3.scaleLinear()
+        .domain([-5, 5])
         .range([height, 0]);
+    const y = d => _y(d) + 30;
     const line_orignal = d3.line()
         .x(d => x(d.x))
         .y(d => y(d.y));
@@ -81,12 +128,18 @@ class TracePanel extends React.Component {
         .y(d => y(d.y))
         // .curve(d3.curveCatmullRom.alpha(0.5));
         .curve(d3.curveBasis);
+    
+    if (this.state.data == null || this.state.data.kalman.pos == undefined )
+      return;
+    oldPath.remove();
+    oldCircle.remove();
     const appendLine = (svgName, data, lineFunc, color) => {
-      d3.select(svgName).append('path')
-        .attr('d', lineFunc(data.pos))
-        .attr('stroke', color)
-        .attr('stroke-width', 2)
-        .attr('fill', 'none');
+      d3.select(svgName)
+        .append('path')
+          .attr('d', lineFunc(data.pos))
+          .attr('stroke', color)
+          .attr('stroke-width', 2)
+          .attr('fill', 'none');
     };
     appendLine('#trace-orignal', this.state.data.orignal, line_orignal, '#FBCB45');
     appendLine('#trace-kalman', this.state.data.kalman, line_orignal, '#667BBF');
@@ -152,11 +205,11 @@ class TracePanel extends React.Component {
             </div>
             <div  className='selector-prefix'></div>
             <div className='control-right-selector'>
-              <Dropdown overlay={sampleMenu} placement="bottomCenter">
+              <Dropdown overlay={sampleMenu} placement='bottomCenter'>
                 <div className='control-dropdown-link'>
                   <p className='dropdown-name'> {SampleName} </p>
                   <div className='type-down'>
-                    <Icon type="down" />
+                    <Icon type='down' />
                   </div>
                 </div>
               </Dropdown>
@@ -171,6 +224,7 @@ class TracePanel extends React.Component {
               Orignal
             </p>
             <svg className='trace-svg' id='trace-orignal'>
+              {this.drawAxis('#trace-orignal')}
             </svg>          
           </div>
           <div className='cluster-panel'>
@@ -179,6 +233,7 @@ class TracePanel extends React.Component {
               Cluster
             </p>
             <svg className='trace-svg' id='trace-cluster'>
+              {this.drawAxis('#trace-cluster')}
             </svg>
           </div>
           <div className='kalman-panel'>
@@ -187,6 +242,7 @@ class TracePanel extends React.Component {
               Kalman
             </p>
             <svg className='trace-svg' id='trace-kalman'>
+              {this.drawAxis('#trace-kalman')}
             </svg>
           </div>
           <div className='basis-panel'>
@@ -195,6 +251,7 @@ class TracePanel extends React.Component {
               Basis
             </p>
             <svg className='trace-svg' id='trace-basis'>
+              {this.drawAxis('#trace-basis')}
             </svg>
           </div>
         </div>
