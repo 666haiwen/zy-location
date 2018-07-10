@@ -180,7 +180,7 @@ class TracePanel extends React.Component {
     const SampleName = this.state.sampleId === 0 ? 'Sample Selector' 
         : 'Sample ' + this.state.sampleId;
     const sampleItem = [];
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 8; i++) {
       const type = 'Sample ' + i;
       sampleItem.push(<Menu.Item key={i} value={i}>{type}</Menu.Item>);
     }
